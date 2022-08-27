@@ -1,5 +1,11 @@
 pipeline{
     agent any
+    parameters{
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        choice(name: 'CHOICE', choices: ['Testing', 'Dev'], description: 'Pick something')
+
+    }
     environment{
          DB_ENGINE    = 'sqlite'
     }
@@ -7,14 +13,25 @@ pipeline{
         stage("buliding"){
             steps{
                 echo "========executing Buliding ${DB_ENGINE}========"
+                echo "${params.PERSON}"
             }
         }
          stage("testing"){
+            when{
+                expression{
+                    parmas.CHOICE==Testing
+                }
+            }
             steps{
                 echo "========executing Testing ... ${GIT_BRANCH}========"
             }
         }
          stage("development"){
+            when{
+                expression{
+                    parmas.CHOICE==Dev
+                }
+            }
             steps{
                 echo "========executing Development========"
             }
