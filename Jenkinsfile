@@ -19,7 +19,7 @@ pipeline{
          stage("testing"){
             when{
                 expression{
-                    parmas.CHOICE==Testing
+                    params.CHOICE==Testing
                 }
             }
             steps{
@@ -29,7 +29,7 @@ pipeline{
          stage("development"){
             when{
                 expression{
-                    parmas.CHOICE==Dev
+                    params.CHOICE==Dev
                 }
             }
             steps{
